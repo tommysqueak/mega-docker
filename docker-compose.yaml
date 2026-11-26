@@ -1,5 +1,6 @@
 services:
   megacmd:
+    build: .
     image: megacmd
     restart: unless-stopped
     environment:
