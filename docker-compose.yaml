@@ -9,7 +9,7 @@ services:
     volumes:
       - /home/USER/mega/sync:/data/sync # folder you want to sync on the host
       - /etc/machine-id:/etc/machine-id:ro # fix for issue https://github.com/meganz/MEGAcmd/issues/623 Use the hosts Uunique id to identify syncing device
-      - megacmd-config:/mega/.megaCmd # persist login session across redeploys
+      - megacmd-config:/home/mega/.megaCmd # persist login session across redeploys
 
 volumes:
   megacmd-config:
