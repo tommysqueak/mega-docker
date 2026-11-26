@@ -13,8 +13,13 @@ Headless [MEGAcmd](https://github.com/meganz/MEGAcmd) Docker image - sync MEGA c
 ## Quickstart
 
 1. **Setup**  
-Clone this repo and edit `docker-compose.yaml`:
-   - map the folder on your host to `/data/sync`
+Clone this repo and configure ENV vars in `.env`:
+
+   ```sh
+   cp .env.example .env
+   ```
+
+   - set `SYNC_DIR` to the folder on your host
    - set `PUID`/`PGID` to your host user (`id -u`, `id -g`)
 
 2. **Start container**:
@@ -27,7 +32,7 @@ Clone this repo and edit `docker-compose.yaml`:
 Wait for `healthy` in `docker ps`, then log in:
 
    ```sh
-   docker compose exec --user 1000 --env HOME=/home/mega megacmd mega-cmd
+   docker compose exec --user 1000 --env HOME=/home/mega megacmd mega-cmd  # your PUID if you changed it
    ```
 
    ```sh
@@ -37,7 +42,7 @@ Wait for `healthy` in `docker ps`, then log in:
 4. **Setup sync folder:**
 
    ```sh
-   sync /data/sync /Photos   # local folder ↔ cloud folder
+   sync /data/sync /Photos   # local folder ↔ cloud folder. This will sync /Photos (your chose cloud foler) with the $SYNC_DIR on your host machine
    ```
 
 5. **Done**
@@ -54,7 +59,7 @@ This will exit mega-cmd setup, leaving mega-cmd to keep the folder in-sync with 
 Open bash on the container:
 
 ```sh
-docker compose exec --user 1000 --env HOME=/home/mega megacmd sh
+docker compose exec --user 1000 --env HOME=/home/mega megacmd sh  # your PUID if you changed it
 ```
 
 Then run any of these or any from the [full list of commands](https://github.com/meganz/MEGAcmd/blob/master/UserGuide.md#command-summary)
@@ -73,10 +78,13 @@ All [`mega-*` commands ](https://github.com/meganz/MEGAcmd/blob/master/UserGuide
 
 ## Configuration
 
+Values live in `.env` — copy `.env.example`.
+
 | Env | Default | Purpose |
 | --- | --- | --- |
 | `PUID` | 1000 | uid files are synced as; match your host user |
 | `PGID` | 1000 | gid files are synced as |
+| `SYNC_DIR` | required | host folder mapped to `/data/sync` |
 
 | Mount | Purpose |
 | --- | --- |
