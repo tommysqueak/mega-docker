@@ -59,10 +59,11 @@ docker compose exec --user 1000 --env HOME=/home/mega megacmd sh
 
 Then run any of these or any from the [full list of commands](https://github.com/meganz/MEGAcmd/blob/master/UserGuide.md#command-summary)
 ```
-mega-mount                                                            # lists incoming shares
+mega-mount # lists the available root cloud folders
 mega-sync /data/sync/theirs //from/their.email@example.com:share-name # sync a folder to a folder thats been shared with you
+mega-sync # List currently synced folders
 mega-help # list possible commands
-mega-whoami
+mega-whoami # Shows who is signed in
 ```
 
 ### Other commands
