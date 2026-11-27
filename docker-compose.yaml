@@ -7,7 +7,7 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
     volumes:
-      - ${SYNC_DIR:?Set SYNC_DIR in .env (see .env.example)}:/data/sync # folder you want to sync on the host
+      - ${SYNC_DIR:?Set SYNC_DIR in .env (see .env.example)}:/data/sync # SYNC_DIR - folder you want to sync on the host
       - /etc/machine-id:/etc/machine-id:ro # fix for issue https://github.com/meganz/MEGAcmd/issues/623 Use the hosts Uunique id to identify syncing device
       - megacmd-config:/home/mega/.megaCmd # persist login session across redeploys
 
